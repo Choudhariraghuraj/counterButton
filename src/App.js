@@ -37,7 +37,8 @@ incrementCounter(incrementValue){
   this.setState(prevstate => ({
     counter:prevstate.counter + incrementValue
   }))
-  console.log("kk")
+  console.log("kerfdsk");
+  console.log("kerfdsk");
 }
 
 render(){
