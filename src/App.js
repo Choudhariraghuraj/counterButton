@@ -1,28 +1,54 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
 
-class App extends Component {
+class Button extends React.Component {
+  constructor(props) {
+    super(props); 
+    this.handleClick = this.handleClick.bind(this); 
+  }
+ 
+  handleClick() {
+    this.props.onClickFunction(this.props.incrementValue)
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <button onClick={this.handleClick}>
+        +{this.props.incrementValue}
+      </button>
+    )
   }
 }
+const Result = props => {
+  return (
+    <div>
+      {props.counter}
+    </div>
+  )
+}
+class App extends React.Component {  
+  constructor(props){
+    super(props);
+    this.state = {
+      counter:0
+    }
+    this.incrementCounter = this.incrementCounter.bind(this);
+  }
+incrementCounter(incrementValue){
+  this.setState(prevstate => ({
+    counter:prevstate.counter + incrementValue
+  }))
+}
 
-export default App;
+render(){
+  return(
+    <div>
+      <Button incrementValue={1} onClickFunction={this.incrementCounter} />
+      <Button incrementValue={10} onClickFunction={this.incrementCounter} />
+      <Button incrementValue={100} onClickFunction={this.incrementCounter} />
+      <Button incrementValue={1000} onClickFunction={this.incrementCounter} />
+      <Result counter = {this.state.counter} />
+    </div>
+  )
+}
+}
+export default App
