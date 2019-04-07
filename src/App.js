@@ -37,6 +37,7 @@ incrementCounter(incrementValue){
   this.setState(prevstate => ({
     counter:prevstate.counter + incrementValue
   }))
+  console.log("kk")
 }
 
 render(){
